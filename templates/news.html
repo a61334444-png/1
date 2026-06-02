@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Новости и статьи</h1>
+<div class="chips"><a class="chip" href="/news">Все</a>{% for c in categories %}<a class="chip" href="/news?category={{c.category}}">{{c.category}}</a>{% endfor %}</div>
+{% for n in news %}<article class="item"><div><span class="tag">{{n.category}}</span><h2>{{n.title}}</h2><p>{{n.text}}</p><small>{{n.created_at}}</small></div></article>{% else %}<p>Материалы не найдены.</p>{% endfor %}
+{% endblock %}

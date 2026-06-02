@@ -1,0 +1,21 @@
+{% extends 'base.html' %}{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">Информационная система практики</p>
+    <h1>Портал вакансий для студентов и выпускников</h1>
+    <p>Система помогает работодателям публиковать вакансии, а студентам — находить стажировки, работу и карьерные мероприятия.</p>
+    <a class="btn" href="/vacancies">Смотреть вакансии</a>
+    <a class="btn secondary" href="/register">Создать учетную запись</a>
+  </div>
+</section>
+<section class="stats" aria-label="Статистика сайта">
+  <div><b>{{stats.vacancies}}</b><span>вакансий</span></div>
+  <div><b>{{stats.employers}}</b><span>работодателей</span></div>
+  <div><b>{{stats.news}}</b><span>новостей и статей</span></div>
+</section>
+<section class="banner"><strong>Карьерная неделя:</strong> зарегистрируйтесь, выберите вакансию и отправьте отклик через форму на сайте.</section>
+<h2>Новые вакансии</h2>
+<div class="cards">{% for v in vacancies %}<article class="card"><h3>{{v.title}}</h3><p>{{v.employer}} · {{v.city}} · {{v.category}}</p><b>{{v.salary}}</b><a href="/vacancy/{{v.id}}">Подробнее</a></article>{% endfor %}</div>
+<h2>Новости и статьи</h2>
+<div class="cards">{% for n in news %}<article class="card"><span class="tag">{{n.category}}</span><h3>{{n.title}}</h3><p>{{n.text}}</p></article>{% endfor %}</div>
+{% endblock %}

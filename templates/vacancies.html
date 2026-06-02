@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Вакансии</h1>
+<form class="filter" method="get">
+  <input name="q" value="{{q}}" placeholder="Поиск по названию, описанию или работодателю">
+  <select name="category"><option value="">Все категории</option>{% for c in categories %}<option value="{{c.category}}" {% if selected_category==c.category %}selected{% endif %}>{{c.category}}</option>{% endfor %}</select>
+  <select name="city"><option value="">Все города</option>{% for c in cities %}<option value="{{c.city}}" {% if selected_city==c.city %}selected{% endif %}>{{c.city}}</option>{% endfor %}</select>
+  <button class="btn">Найти</button>
+</form>
+<p class="muted">Найдено вакансий: {{ vacancies|length }}</p>
+<div class="list">{% for v in vacancies %}<article class="item"><div><span class="tag">{{v.category}}</span><h2><a href="/vacancy/{{v.id}}">{{v.title}}</a></h2><p>{{v.employer}} · {{v.city}} · {{v.employment_type}}</p><p>{{v.description}}</p></div><strong>{{v.salary}}</strong></article>{% else %}<p>Вакансии не найдены.</p>{% endfor %}</div>
+{% endblock %}
